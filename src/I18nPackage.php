@@ -13,6 +13,7 @@ use Bone\I18n\View\Extension\Translate;
 use Bone\Mvc\View\PlatesEngine;
 use Bone\I18n\Service\TranslatorFactory;
 use Laminas\I18n\Translator\Translator;
+use Locale;
 
 class I18nPackage implements RegistrationInterface, MiddlewareAwareInterface
 {
@@ -23,14 +24,15 @@ class I18nPackage implements RegistrationInterface, MiddlewareAwareInterface
     public function addToContainer(Container $c)
     {
         if ($c->has('i18n')) {
-            $config = $c->get('i18n');
+            $i18n = $c->get('i18n');
             $factory = new TranslatorFactory();
-            $translator = $factory->createTranslator($config);
+            $translator = $factory->createTranslator($i18n);
             $engine = $c->get(PlatesEngine::class);
             $engine->loadExtension(new Translate($translator));
-            $engine->loadExtension(new LocaleLink($config['enabled']));
-            $defaultLocale = $config['default_locale'] ?: 'en_GB';
+            $engine->loadExtension(new LocaleLink($i18n['enabled']));
+            $defaultLocale = $i18n['default_locale'] ?: 'en_GB';
             $translator->setLocale($defaultLocale);
+            Locale::setDefault($defaultLocale);
             $c[Translator::class] = $translator;
         } else {
             throw new Exception('I18nPackage is registered but there is no i18n config. See the 
