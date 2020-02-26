@@ -8,6 +8,18 @@ use Locale;
 
 class LocaleLink implements ExtensionInterface
 {
+    /** @var bool $enabled */
+    private $enabled;
+
+    /**
+     * LocaleLink constructor.
+     * @param bool $enabled
+     */
+    public function __construct(bool $enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
     /**
      * @param Engine $engine
      */
@@ -22,6 +34,6 @@ class LocaleLink implements ExtensionInterface
      */
     public function locale() : string
     {
-        return '/' . Locale::getDefault();
+        return $this->enabled ? '/' . Locale::getDefault() : '';
     }
 }
