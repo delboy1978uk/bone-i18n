@@ -4,10 +4,10 @@ namespace Bone\I18n;
 
 use Barnacle\Container;
 use Barnacle\RegistrationInterface;
-use Bone\Mvc\View\Extension\Plates\LocaleLink;
-use Bone\Mvc\View\Extension\Plates\Translate;
+use Bone\I18n\View\Extension\LocaleLink;
+use Bone\I18n\View\Extension\Translate;
 use Bone\Mvc\View\PlatesEngine;
-use Bone\Service\TranslatorFactory;
+use Bone\I18n\Service\TranslatorFactory;
 use Laminas\I18n\Translator\Translator;
 
 class I18nPackage implements RegistrationInterface
