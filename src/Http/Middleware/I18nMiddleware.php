@@ -2,10 +2,10 @@
 
 namespace Bone\I18n\Http\Middleware;
 
-use Bone\Mvc\Router\NotFoundException;
 use Locale;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UriInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Laminas\I18n\Translator\Translator;
@@ -46,30 +46,40 @@ class I18nMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        $uri = $request->getUri();
+        $path = $uri->getPath();
+        preg_match(self::REGEX_LOCALE, $path, $matches);
+        $locale = $this->defaultLocale;
+
+        if (isset($matches['locale'])) {
+            $locale = in_array($matches['locale'], $this->supportedLocales) ? $matches['locale'] : $this->defaultLocale;
+            $request = $this->stripLocaleFromUri($uri, $path, $locale, $request);
+        }
+
+        Locale::canonicalize($locale);
+        Locale::setDefault($locale);
+        $request = $request->withAttribute('locale', $locale);
+
         if ($this->enabled === true) {
-            $uri = $request->getUri();
-            $path = $uri->getPath();
-
-            if (! preg_match(self::REGEX_LOCALE, $path, $matches)) {
-                Locale::canonicalize($this->defaultLocale);
-                Locale::setDefault($this->defaultLocale);
-            } else {
-                $locale = $matches['locale'];
-
-                if (in_array($locale, $this->supportedLocales)) {
-                    $locale = Locale::canonicalize($locale);
-                    Locale::setDefault($locale);
-                    $this->translator->setLocale($locale);
-                    $path = substr($path, strlen($locale) + 1);
-                    $uri = $uri->withPath($path);
-                    $request = $request->withAttribute('locale', $locale);
-                    $request = $request->withUri($uri);
-                }
-            }
+            $this->translator->setLocale($locale);
         }
 
         return $handler->handle($request);
     }
 
+    /**
+     * @param UriInterface $uri
+     * @param string $path
+     * @param string $locale
+     * @param ServerRequestInterface $request
+     * @return ServerRequestInterface
+     */
+    private function stripLocaleFromUri(UriInterface $uri, string $path, string $locale, ServerRequestInterface $request): ServerRequestInterface
+    {
+        $path = substr($path, strlen($locale) + 1);
+        $uri = $uri->withPath($path);
+        $request = $request->withUri($uri);
 
+        return $request;
+    }
 }
