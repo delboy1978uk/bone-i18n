@@ -62,11 +62,10 @@ class I18nMiddleware implements MiddlewareInterface
                     $this->translator->setLocale($locale);
                     $path = substr($path, strlen($locale) + 1);
                     $uri = $uri->withPath($path);
+                    $request = $request->withAttribute('locale', $locale);
                     $request = $request->withUri($uri);
                 }
             }
-
-
         }
 
         return $handler->handle($request);
