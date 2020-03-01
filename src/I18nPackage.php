@@ -10,7 +10,7 @@ use Bone\Http\MiddlewareAwareInterface;
 use Bone\I18n\Http\Middleware\I18nMiddleware;
 use Bone\I18n\View\Extension\LocaleLink;
 use Bone\I18n\View\Extension\Translate;
-use Bone\Mvc\View\PlatesEngine;
+use Bone\View\PlatesEngine;
 use Bone\I18n\Service\TranslatorFactory;
 use Laminas\I18n\Translator\Translator;
 use Locale;
