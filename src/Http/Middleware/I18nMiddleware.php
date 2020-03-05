@@ -76,7 +76,7 @@ class I18nMiddleware implements MiddlewareInterface
      */
     private function stripLocaleFromUri(UriInterface $uri, string $path, string $locale, ServerRequestInterface $request): ServerRequestInterface
     {
-        $path = substr($path, strlen($locale) + 1);
+        $path = substr($path, strlen($locale) + 1) ?? '/';
         $uri = $uri->withPath($path);
         $request = $request->withUri($uri);
 
