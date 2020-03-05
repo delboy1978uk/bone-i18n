@@ -10,7 +10,7 @@ use Bone\Http\MiddlewareAwareInterface;
 use Bone\I18n\Http\Middleware\I18nMiddleware;
 use Bone\I18n\View\Extension\LocaleLink;
 use Bone\I18n\View\Extension\Translate;
-use Bone\View\PlatesEngine;
+use Bone\View\ViewEngine;
 use Bone\I18n\Service\TranslatorFactory;
 use Laminas\I18n\Translator\Translator;
 use Locale;
@@ -27,7 +27,7 @@ class I18nPackage implements RegistrationInterface, MiddlewareAwareInterface
             $i18n = $c->get('i18n');
             $factory = new TranslatorFactory();
             $translator = $factory->createTranslator($i18n);
-            $engine = $c->get(PlatesEngine::class);
+            $engine = $c->get(ViewEngine::class);
             $engine->loadExtension(new Translate($translator));
             $engine->loadExtension(new LocaleLink($i18n['enabled']));
             $defaultLocale = $i18n['default_locale'] ?: 'en_GB';
