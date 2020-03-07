@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "delboy1978uk/form": "^2.1",
         "laminas/laminas-i18n": "^2.10"
     },
     "require-dev": {

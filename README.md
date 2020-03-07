@@ -77,3 +77,6 @@ Or again, more conveniently
 ```php
 <?= $this->t('whatever.key.to.translate') ;?>
 ```
+#### i18n aware forms
+Bone Framework uses `delboy1978uk/form` for its form functionality. However, instead of extending `Del\Form`, you can
+create a form extending `Bone\I18n\Form`, which takes the translator as a second argument.  
