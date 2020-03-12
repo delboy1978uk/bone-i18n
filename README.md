@@ -1,28 +1,15 @@
-# i18n
+# bone-i18n
+[![Latest Stable Version](https://poser.pugx.org/delboy1978uk/bone-i18n/v/stable)](https://packagist.org/packages/delboy1978uk/bone-i18n) [![Total Downloads](https://poser.pugx.org/delboy1978uk/bone/downloads)](https://packagist.org/packages/delboy1978uk/bone) [![Latest Unstable Version](https://poser.pugx.org/delboy1978uk/bone-i18n/v/unstable)](https://packagist.org/packages/delboy1978uk/bone-i18n) [![License](https://poser.pugx.org/delboy1978uk/bone-i18n/license)](https://packagist.org/packages/delboy1978uk/bone-i18n)<br />
+[![Build Status](https://travis-ci.org/delboy1978uk/bone-i18n.png?branch=master)](https://travis-ci.org/delboy1978uk/bone-i18n) [![Code Coverage](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/?branch=master)<br />
+
 I18n package for Bone Mvc Framework
 ## installation
-Use Composer
-```
-composer require delboy1978uk/bone-i18n
-```
+bone-i18n is a core dependency of `delboy1978uk/bone`, and so it is installed by default.
 ## setup
-Simply add to the `config/packages.php`
-```php
-<?php
+The skeleton app has a directory for translations (usually `data/translations` but you can set this to anything), which 
+will contain locale folders such as `en_US` etc.
 
-// use statements here
-use Bone\I18n\I18nPackage;
-
-return [
-    'packages' => [
-        // packages here...,
-        I18nPackage::class,
-    ],
-    // ...
-];
-```
-Create directory for translations (usually `data/translations`), which will contain locale folders such as `en_US` etc.
-Drop in your `.mo` and `.po` files. Add the following config file and tweak to suit:
+Drop in your `.mo` and `.po` files. Open `config/bone-i18n.php` and tweak to suit:
 ```php
 <?php
 
