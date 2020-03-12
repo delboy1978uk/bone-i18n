@@ -3,8 +3,8 @@
 namespace Bone\I18n;
 
 use Barnacle\Container;
+use Barnacle\Exception\NotFoundException;
 use Barnacle\RegistrationInterface;
-use Bone\Exception;
 use Bone\Http\Middleware\Stack;
 use Bone\Http\MiddlewareAwareInterface;
 use Bone\I18n\Http\Middleware\I18nMiddleware;
@@ -35,7 +35,7 @@ class I18nPackage implements RegistrationInterface, MiddlewareAwareInterface
             Locale::setDefault($defaultLocale);
             $c[Translator::class] = $translator;
         } else {
-            throw new Exception('I18nPackage is registered but there is no i18n config. See the 
+            throw new NotFoundException('I18nPackage is registered but there is no i18n config. See the 
             delboy1978uk/bone-i18n README.', 418);
         }
     }
@@ -51,22 +51,5 @@ class I18nPackage implements RegistrationInterface, MiddlewareAwareInterface
             $i18nMiddleware = new I18nMiddleware($translator, $i18n['supported_locales'], $i18n['default_locale'], $i18n['enabled']);
             $stack->addMiddleWare($i18nMiddleware);
         }
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getEntityPath(): string
-    {
-        return '';
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasEntityPath(): bool
-    {
-        return false;
     }
 }
