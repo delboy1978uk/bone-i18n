@@ -42,7 +42,7 @@ class I18nTest extends Test
     protected function _before()
     {
         $this->container = $c = new Container();
-        $this->container['viewFolder'] = 'src/view/';
+        $this->container['viewFolder'] = 'tests/_data/';
         $this->container['default_layout'] = 'whatever';
         $this->container['error_pages'] = [500 => 'whatever'];
         $this->container['i18n'] = [
