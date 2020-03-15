@@ -49,7 +49,7 @@ In a controller action if you need the locale you can say:
 $locale = $request->getAttribute('locale');
 ```
 To get a translator into your controller, make it implement `Bone\I18n\I18nAwareInterface` and use the 
-`Bone\Traits\HasTranslatorTrait`. If you package's Package class returns the controller without going through the 
+`Bone\I18n\Traits\HasTranslatorTrait`. If you package's Package class returns the controller without going through the 
 `Bone\Mvc\Controller\Init` class, change it now to this:
 ```php
 return  Init::controller(new YourController(), $c);
