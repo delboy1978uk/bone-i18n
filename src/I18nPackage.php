@@ -5,8 +5,8 @@ namespace Bone\I18n;
 use Barnacle\Container;
 use Barnacle\Exception\NotFoundException;
 use Barnacle\RegistrationInterface;
+use Bone\Http\GlobalMiddlewareRegistrationInterface;
 use Bone\Http\Middleware\Stack;
-use Bone\Http\MiddlewareAwareInterface;
 use Bone\I18n\Http\Middleware\I18nMiddleware;
 use Bone\I18n\View\Extension\LocaleLink;
 use Bone\I18n\View\Extension\Translate;
@@ -15,7 +15,7 @@ use Bone\I18n\Service\TranslatorFactory;
 use Laminas\I18n\Translator\Translator;
 use Locale;
 
-class I18nPackage implements RegistrationInterface, MiddlewareAwareInterface
+class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistrationInterface
 {
     /**
      * @param Container $c
@@ -41,15 +41,29 @@ class I18nPackage implements RegistrationInterface, MiddlewareAwareInterface
     }
 
     /**
-     * @param Stack $stack
+     * @param Container $c
+     * @return array
      */
-    public function addMiddleware(Stack $stack, Container $c): void
+    public function getMiddleware(Container $c): array
     {
         if ($c->has('i18n')) {
             $i18n = $c->get('i18n');
             $translator = $c->get(Translator::class);
             $i18nMiddleware = new I18nMiddleware($translator, $i18n['supported_locales'], $i18n['default_locale'], $i18n['enabled']);
-            $stack->addMiddleWare($i18nMiddleware);
+
+            return [$i18nMiddleware];
+        }
+
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getGlobalMiddleware(Container $c): array
+    {
+        if ($c->has('i18n') && $c->get('i18n')['enabled']) {
+            return [I18nMiddleware::class];
         }
     }
 }
