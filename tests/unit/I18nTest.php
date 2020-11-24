@@ -77,7 +77,10 @@ class I18nTest extends Test
         $package->addToContainer($this->container);
         $package = new I18nPackage();
         $package->addToContainer($this->container);
-        $package->addMiddleware($this->container->get(Stack::class), $this->container);
+        $middleware = $package->getMiddleware($this->container)[0];
+        /** @var Stack $stack */
+        $stack = $this->container->get(Stack::class);
+        $stack->addMiddleWare($middleware);
         $factory = new TranslatorFactory();
         $translator = $this->container->get(Translator::class);
         $factory->addPackageTranslations($translator, new FakePackagePackage(), 'fr_BE');
