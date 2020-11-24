@@ -65,5 +65,7 @@ class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistration
         if ($c->has('i18n') && $c->get('i18n')['enabled']) {
             return [I18nMiddleware::class];
         }
+
+        return [];
     }
 }
