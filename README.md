@@ -1,8 +1,8 @@
 # bone-i18n
 [![Latest Stable Version](https://poser.pugx.org/delboy1978uk/bone-i18n/v/stable)](https://packagist.org/packages/delboy1978uk/bone-i18n) [![Total Downloads](https://poser.pugx.org/delboy1978uk/bone/downloads)](https://packagist.org/packages/delboy1978uk/bone) [![Latest Unstable Version](https://poser.pugx.org/delboy1978uk/bone-i18n/v/unstable)](https://packagist.org/packages/delboy1978uk/bone-i18n) [![License](https://poser.pugx.org/delboy1978uk/bone-i18n/license)](https://packagist.org/packages/delboy1978uk/bone-i18n)<br />
-[![Build Status](https://travis-ci.org/delboy1978uk/bone-i18n.png?branch=master)](https://travis-ci.org/delboy1978uk/bone-i18n) [![Code Coverage](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/?branch=master)<br />
+![build status](https://github.com/delboy1978uk/bone-i18n/actions/workflows/master.yml/badge.svg) [![Code Coverage](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-i18n/?branch=master)<br />
 
-I18n package for Bone Mvc Framework
+I18n package for Bone Framework
 ## installation
 bone-i18n is a core dependency of `delboy1978uk/bone`, and so it is installed by default.
 ## setup

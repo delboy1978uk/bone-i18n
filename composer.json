@@ -20,9 +20,10 @@
         "delboy1978uk/bone-view": "^1.0"
     },
     "require-dev": {
-        "codeception/codeception": "^2.2",
-        "laminas/laminas-diactoros": "2.*",
-        "roave\/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-latest",
+        "codeception/codeception": "^4.1",
+        "codeception/module-asserts": "^2.0",
+        "laminas/laminas-diactoros": "2.*"
     },
     "autoload": {
         "psr-4": {
