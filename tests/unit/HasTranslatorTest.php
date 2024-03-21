@@ -3,10 +3,10 @@
 namespace BoneTest;
 
 use Bone\I18n\Traits\HasTranslatorTrait;
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use Laminas\I18n\Translator\Translator;
 
-class HasTranslatorTest extends Test
+class HasTranslatorTest extends Unit
 {
     public function testTranslator()
     {

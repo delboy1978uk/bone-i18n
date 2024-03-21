@@ -23,7 +23,7 @@ use BoneTest\FakeMiddleware;
 use BoneTest\FakePackage\FakePackagePackage;
 use BoneTest\FakeRequestHandler;
 use BoneTest\MiddlewareTestHandler;
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use Laminas\Diactoros\ServerRequest;
 use Laminas\Diactoros\Stream;
 use Laminas\Diactoros\Uri;
@@ -34,7 +34,7 @@ use Locale;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class I18nTest extends Test
+class I18nTest extends Unit
 {
     /** @var Container */
     protected $container;
