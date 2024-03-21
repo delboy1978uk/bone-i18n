@@ -9,21 +9,21 @@
         }
     ],
     "require": {
-        "php": ">7.1",
+        "php": "^8.2",
         "delboy1978uk/barnacle": "^2.3",
-        "delboy1978uk/form": "^2.1",
-        "laminas/laminas-i18n": "^2.10",
+        "delboy1978uk/form": "^2.4",
+        "laminas/laminas-i18n": "^2.26",
         "laminas/laminas-servicemanager": "^3.3",
-        "psr/http-message": "^1.0",
+        "psr/http-message": "^2.0",
         "psr/http-server-middleware": "^1.0",
-        "delboy1978uk/bone-http": "^2.0",
-        "delboy1978uk/bone-view": "^1.0"
+        "delboy1978uk/bone-http": "^2.3",
+        "delboy1978uk/bone-view": "^v1.7"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
-        "codeception/codeception": "^4.1",
-        "codeception/module-asserts": "^2.0",
-        "laminas/laminas-diactoros": "2.*"
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "^3.0",
+        "laminas/laminas-diactoros": "^3.3"
     },
     "autoload": {
         "psr-4": {
