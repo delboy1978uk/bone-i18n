@@ -5,36 +5,24 @@ namespace Bone\I18n\View\Extension;
 use Laminas\I18n\Translator\Translator;
 use League\Plates\Engine;
 use League\Plates\Extension\ExtensionInterface;
+use League\Plates\Template\Template;
 use Locale;
 
 class Translate implements ExtensionInterface
 {
-    /** @var Translator $translator */
-    private $translator;
+    public ?Template $template = null;
 
-    /**
-     * Translate constructor.
-     * @param Translator $translator
-     */
-    public function __construct(Translator $translator)
-    {
-        $this->translator = $translator;
+    public function __construct(
+        private Translator $translator
+    ) {
     }
 
-    /**
-     * @param Engine $engine
-     */
-    public function register(Engine $engine)
+    public function register(Engine $engine): void
     {
         $engine->registerFunction('t', [$this, 'translate']);
         $engine->registerFunction('translate', [$this, 'translate']);
     }
 
-    /**
-     * @param string $string
-     * @param string $domain
-     * @return string
-     */
     public function translate(string $string, string $domain = 'default') : string
     {
         return $this->translator->translate($string, $domain, Locale::getDefault());
