@@ -4,6 +4,7 @@ namespace Bone\I18n\View\Extension;
 
 use League\Plates\Engine;
 use League\Plates\Extension\ExtensionInterface;
+use League\Plates\Template\Template;
 use Locale;
 
 class LocaleLink implements ExtensionInterface
