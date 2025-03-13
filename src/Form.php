@@ -26,8 +26,5 @@ class Form extends AbstractForm implements I18nAwareInterface
      *  Extend this form an' ye can add yer form elements here
      * @see https://github.com/delboy1978uk/form
      */
-    public function init()
-    {
-
-    }
+    public function init(): void {}
 }
