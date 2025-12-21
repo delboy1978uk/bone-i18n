@@ -8,7 +8,7 @@ use Bone\I18n\I18nRegistrationInterface;
 
 class FakePackagePackage implements RegistrationInterface, I18nRegistrationInterface
 {
-    public function addToContainer(\Barnacle\Container $c)
+    public function addToContainer(Container $c)
     {
         // TODO: Implement addToContainer() method.
     }

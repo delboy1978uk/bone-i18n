@@ -17,11 +17,7 @@ use Locale;
 
 class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistrationInterface
 {
-    /**
-     * @param Container $c
-     * @throws Exception
-     */
-    public function addToContainer(Container $c)
+    public function addToContainer(Container $c): void
     {
         if ($c->has('i18n')) {
             $i18n = $c->get('i18n');
