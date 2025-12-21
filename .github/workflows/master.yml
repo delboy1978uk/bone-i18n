@@ -35,7 +35,8 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - name: Validate composer.json and composer.lock
-        run: composer validate --strict
+        run: composer validate --no-check-all
+#        run: composer validate --strict  use this again when not using dev branch of laminas i18n
 
       - name: Cache Composer packages
         id: composer-cache
