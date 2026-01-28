@@ -16,8 +16,9 @@ use Bone\View\ViewPackage;
 use BoneTest\FakePackage\FakePackagePackage;
 use Codeception\Test\Unit;
 use Laminas\Diactoros\ServerRequest;
-use Laminas\I18n\Translator\Loader\Gettext;
-use Laminas\I18n\Translator\Translator;
+use Symfony\Component\Translation\Loader\MoFileLoader;
+use Symfony\Component\Translation\Translator;
+use Bone\Contracts\Service\TranslatorInterface;
 use Locale;
 
 class I18nTest extends Unit
@@ -35,7 +36,7 @@ class I18nTest extends Unit
         $this->container['i18n'] = [
             'enabled' => true,
             'translations_dir' => 'tests/_data/translations',
-            'type' => Gettext::class,
+            'type' => MoFileLoader::class,
             'default_locale' => 'fr_BE',
             'supported_locales' => ['fr_BE'],
             'date_format' => 'd/m/Y',
@@ -69,23 +70,23 @@ class I18nTest extends Unit
         $stack = $this->container->get(Stack::class);
         $stack->addMiddleWare($middleware);
         $factory = new TranslatorFactory();
-        $translator = $this->container->get(Translator::class);
+        $translator = $this->container->get(TranslatorInterface::class);
         $factory->addPackageTranslations($translator, new FakePackagePackage(), 'fr_BE');
     }
 
     public function testI18nPackage()
     {
         $this->setUpPackage();
-        $this->assertTrue($this->container->has(Translator::class));
+        $this->assertTrue($this->container->has(TranslatorInterface::class));
     }
 
     public function testI18nForm()
     {
         $this->setUpPackage();
-        $translator = $this->container->get(Translator::class);
+        $translator = $this->container->get(TranslatorInterface::class);
         $form = new Form('i18nForm', $translator);
         $form->init();
-        $this->assertInstanceOf(Translator::class, $form->getTranslator());
+        $this->assertInstanceOf(TranslatorInterface::class, $form->getTranslator());
     }
 
     public function testLocale()
@@ -99,7 +100,7 @@ class I18nTest extends Unit
     public function testTranslateViewHelper()
     {
         $this->setUpPackage();
-        $translator = $this->container->get(Translator::class);
+        $translator = $this->container->get(TranslatorInterface::class);
         $viewHelper = new Translate($translator);
         $translation = $viewHelper->translate('download');
         $this->assertEquals('Télécharger', $translation);
@@ -108,7 +109,7 @@ class I18nTest extends Unit
     public function testMiddleware()
     {
         $this->setUpPackage();
-        $translator = $this->container->get(Translator::class);
+        $translator = $this->container->get(TranslatorInterface::class);
         $middleware = new I18nMiddleware($translator, ['fr_BE'], 'fr_BE', true);
         $request = new ServerRequest([],[],'/fr_BE/with-locale');
         $response = $middleware->process($request, new MiddlewareTestHandler());

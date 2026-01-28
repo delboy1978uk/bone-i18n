@@ -2,49 +2,36 @@
 
 namespace Bone\I18n\Service;
 
+use Bone\Contracts\Service\TranslatorInterface;
 use Bone\I18n\I18nRegistrationInterface;
+use Bone\I18n\Service\TranslatorService;
 use Locale;
-use Laminas\I18n\Translator\Loader\Gettext;
-use Laminas\I18n\Translator\Translator;
+
+use Symfony\Component\Translation\Loader\MoFileLoader;
 
 class TranslatorFactory
 {
-    /**
-     * @param array $config
-     * @return Translator
-     */
     public function createTranslator(array $config, $domain = 'default')
     {
-        $translator = new Translator();
+        $translator = new TranslatorService(Locale::getDefault());
+        $translator->addLoader('mo', new MoFileLoader());
 
         foreach ($config['supported_locales'] as $locale) {
             $file = $config['translations_dir'] . '/' . $locale .  '/' . $locale . '.mo';
-            $translator->addTranslationFile(
-                $config['type'],
-                $file,
-                $domain,
-                $locale
-            );
+            $translator->addResource('mo', $file, $locale, $domain);
         }
-        $translator->setLocale(Locale::getDefault());
 
         return $translator;
     }
 
-    /**
-     * @param Translator $translator
-     * @param I18nRegistrationInterface $package
-     * @param string $locale
-     * @return Translator
-     */
-    public function addPackageTranslations(Translator $translator, I18nRegistrationInterface $package, string $locale)
+    public function addPackageTranslations(TranslatorInterface $translator, I18nRegistrationInterface $package, string $locale)
     {
         $dir = $package->getTranslationsDirectory();
-        $translator->addTranslationFile(
-            Gettext::class,
+        $translator->addResource(
+            'mo',
             $dir . '/' . $locale . '/' . $locale . '.mo',
-            'user',
-            $locale
+            $locale,
+            'user'
         );
 
         return $translator;

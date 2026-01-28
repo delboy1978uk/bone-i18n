@@ -12,7 +12,7 @@ use Bone\I18n\View\Extension\LocaleLink;
 use Bone\I18n\View\Extension\Translate;
 use Bone\View\ViewEngine;
 use Bone\I18n\Service\TranslatorFactory;
-use Laminas\I18n\Translator\Translator;
+use Bone\Contracts\Service\TranslatorInterface;
 use Locale;
 
 class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistrationInterface
@@ -29,7 +29,7 @@ class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistration
             $defaultLocale = $i18n['default_locale'] ?: 'en_GB';
             $translator->setLocale($defaultLocale);
             Locale::setDefault($defaultLocale);
-            $c[Translator::class] = $translator;
+            $c[TranslatorInterface::class] = $translator;
         } else {
             throw new NotFoundException('I18nPackage is registered but there is no i18n config. See the 
             delboy1978uk/bone-i18n README.', 418);
@@ -44,7 +44,7 @@ class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistration
     {
         if ($c->has('i18n')) {
             $i18n = $c->get('i18n');
-            $translator = $c->get(Translator::class);
+            $translator = $c->get(TranslatorInterface::class);
             $i18nMiddleware = new I18nMiddleware($translator, $i18n['supported_locales'], $i18n['default_locale'], $i18n['enabled']);
 
             return [$i18nMiddleware];

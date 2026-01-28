@@ -2,17 +2,17 @@
 
 namespace Bone\I18n;
 
-use Laminas\I18n\Translator\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 interface I18nAwareInterface
 {
     /**
-     * @return Translator
+     * @return TranslatorInterface
      */
-    public function getTranslator(): Translator;
+    public function getTranslator(): TranslatorInterface;
 
     /**
-     * @param Translator $translator
+     * @param TranslatorInterface $translator
      */
-    public function setTranslator(Translator $translator): void;
+    public function setTranslator(TranslatorInterface $translator): void;
 }

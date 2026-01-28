@@ -4,7 +4,7 @@ namespace BoneTest;
 
 use Bone\I18n\Traits\HasTranslatorTrait;
 use Codeception\Test\Unit;
-use Laminas\I18n\Translator\Translator;
+use Symfony\Component\Translation\Translator;
 
 class HasTranslatorTest extends Unit
 {

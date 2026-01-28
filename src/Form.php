@@ -6,7 +6,7 @@ use Bone\I18n\I18nAwareInterface;
 use Bone\I18n\Traits\HasTranslatorTrait;
 use Del\Form\AbstractForm;
 use Del\Form\Form as BaseForm;
-use Laminas\I18n\Translator\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Form extends AbstractForm implements I18nAwareInterface
 {
@@ -16,7 +16,7 @@ class Form extends AbstractForm implements I18nAwareInterface
      * Form constructor.
      * @param string $name
      */
-    public function __construct($name, Translator $translator)
+    public function __construct($name, TranslatorInterface $translator)
     {
         $this->setTranslator($translator);
         parent::__construct($name);

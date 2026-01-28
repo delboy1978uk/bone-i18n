@@ -8,13 +8,13 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Laminas\I18n\Translator\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class I18nMiddleware implements MiddlewareInterface
 {
     const REGEX_LOCALE = '#^/(?P<locale>[a-z]{2}[-_][a-zA-Z]{2})(?:/|$)#';
 
-    /** @var Translator$translator */
+    /** @var TranslatorInterface $translator */
     private $translator;
 
     /** @var array $supportedLocales */
@@ -28,10 +28,10 @@ class I18nMiddleware implements MiddlewareInterface
 
     /**
      * InternationalisationMiddleware constructor.
-     * @param  $helper
+     * @param TranslatorInterface $translator
      * @param string|null $defaultLocale
      */
-    public function __construct(Translator $translator, array $supportedLocales, string $defaultLocale, bool $enabled)
+    public function __construct(TranslatorInterface $translator, array $supportedLocales, string $defaultLocale, bool $enabled)
     {
         $this->translator = $translator;
         $this->supportedLocales = $supportedLocales;

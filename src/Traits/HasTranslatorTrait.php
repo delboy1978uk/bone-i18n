@@ -2,25 +2,25 @@
 
 namespace Bone\I18n\Traits;
 
-use Laminas\I18n\Translator\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 trait HasTranslatorTrait
 {
-    /** @var Translator $translator */
+    /** @var TranslatorInterface $translator */
     private $translator;
 
     /**
-     * @return Translator
+     * @return TranslatorInterface
      */
-    public function getTranslator(): Translator
+    public function getTranslator(): TranslatorInterface
     {
         return $this->translator;
     }
 
     /**
-     * @param Translator $translator
+     * @param TranslatorInterface $translator
      */
-    public function setTranslator(Translator $translator): void
+    public function setTranslator(TranslatorInterface $translator): void
     {
         $this->translator = $translator;
     }
