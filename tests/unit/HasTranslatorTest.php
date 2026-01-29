@@ -3,8 +3,8 @@
 namespace BoneTest;
 
 use Bone\I18n\Traits\HasTranslatorTrait;
+use Bone\Contracts\Service\TranslatorInterface;
 use Codeception\Test\Unit;
-use Symfony\Component\Translation\Translator;
 
 class HasTranslatorTest extends Unit
 {
@@ -14,7 +14,7 @@ class HasTranslatorTest extends Unit
           use HasTranslatorTrait;
         };
 
-        $class->setTranslator($this->make(Translator::class));
-        $this->assertInstanceOf(Translator::class, $class->getTranslator());
+        $class->setTranslator($this->makeEmpty(TranslatorInterface::class));
+        $this->assertInstanceOf(TranslatorInterface::class, $class->getTranslator());
     }
 }

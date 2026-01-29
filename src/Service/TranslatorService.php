@@ -11,6 +11,6 @@ class TranslatorService extends Translator implements TranslatorInterface
 {
     public function translate(string $message, ?string $textDomain = null, ?string $locale = null, ?array $parameters = null): string
     {
-        return $this->trans($message, $parameters, $textDomain, $locale);
+        return $this->trans($message, $parameters ?? [], $textDomain, $locale);
     }
 }
