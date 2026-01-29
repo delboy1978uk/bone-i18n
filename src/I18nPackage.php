@@ -36,10 +36,6 @@ class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistration
         }
     }
 
-    /**
-     * @param Container $c
-     * @return array
-     */
     public function getMiddleware(Container $c): array
     {
         if ($c->has('i18n')) {
@@ -53,9 +49,6 @@ class I18nPackage implements RegistrationInterface, GlobalMiddlewareRegistration
         return [];
     }
 
-    /**
-     * @return array
-     */
     public function getGlobalMiddleware(Container $c): array
     {
         if ($c->has('i18n') && $c->get('i18n')['enabled']) {

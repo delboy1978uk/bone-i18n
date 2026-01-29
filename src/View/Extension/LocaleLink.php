@@ -16,7 +16,7 @@ class LocaleLink implements ExtensionInterface
     ) {
     }
 
-    public function register(Engine $engine)
+    public function register(Engine $engine): void
     {
         $engine->registerFunction('l', [$this, 'locale']);
         $engine->registerFunction('locale', [$this, 'locale']);

@@ -14,23 +14,11 @@ class I18nMiddleware implements MiddlewareInterface
 {
     const REGEX_LOCALE = '#^/(?P<locale>[a-z]{2}[-_][a-zA-Z]{2})(?:/|$)#';
 
-    /** @var TranslatorInterface $translator */
-    private $translator;
+    private TranslatorInterface $translator;
+    private array $supportedLocales;
+    private string $defaultLocale;
+    private bool $enabled;
 
-    /** @var array $supportedLocales */
-    private $supportedLocales;
-
-    /** @var string $defaultLocale */
-    private $defaultLocale;
-
-    /** @var bool $enabled */
-    private $enabled;
-
-    /**
-     * InternationalisationMiddleware constructor.
-     * @param TranslatorInterface $translator
-     * @param string|null $defaultLocale
-     */
     public function __construct(TranslatorInterface $translator, array $supportedLocales, string $defaultLocale, bool $enabled)
     {
         $this->translator = $translator;
@@ -39,11 +27,6 @@ class I18nMiddleware implements MiddlewareInterface
         $this->enabled = $enabled;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     * @return ResponseInterface
-     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $uri = $request->getUri();
@@ -67,13 +50,6 @@ class I18nMiddleware implements MiddlewareInterface
         return $handler->handle($request);
     }
 
-    /**
-     * @param UriInterface $uri
-     * @param string $path
-     * @param string $locale
-     * @param ServerRequestInterface $request
-     * @return ServerRequestInterface
-     */
     private function stripLocaleFromUri(UriInterface $uri, string $path, string $locale, ServerRequestInterface $request): ServerRequestInterface
     {
         $path = substr($path, strlen($locale) + 1) ?? '/';

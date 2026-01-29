@@ -12,11 +12,7 @@ class Form extends AbstractForm implements I18nAwareInterface
 {
     use HasTranslatorTrait;
 
-    /**
-     * Form constructor.
-     * @param string $name
-     */
-    public function __construct($name, TranslatorInterface $translator)
+    public function __construct(string $name, TranslatorInterface $translator)
     {
         $this->setTranslator($translator);
         parent::__construct($name);
