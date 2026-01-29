@@ -2,7 +2,7 @@
 
 namespace Bone\I18n;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Bone\Contracts\Service\TranslatorInterface;
 
 interface I18nAwareInterface
 {

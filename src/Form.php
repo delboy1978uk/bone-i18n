@@ -4,9 +4,9 @@ namespace Bone\I18n;
 
 use Bone\I18n\I18nAwareInterface;
 use Bone\I18n\Traits\HasTranslatorTrait;
+use Bone\Contracts\Service\TranslatorInterface;
 use Del\Form\AbstractForm;
 use Del\Form\Form as BaseForm;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Form extends AbstractForm implements I18nAwareInterface
 {

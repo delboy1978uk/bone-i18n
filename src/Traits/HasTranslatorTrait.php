@@ -2,7 +2,7 @@
 
 namespace Bone\I18n\Traits;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Bone\Contracts\Service\TranslatorInterface;
 
 trait HasTranslatorTrait
 {

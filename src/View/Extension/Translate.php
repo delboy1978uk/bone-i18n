@@ -2,7 +2,7 @@
 
 namespace Bone\I18n\View\Extension;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Bone\Contracts\Service\TranslatorInterface;
 use League\Plates\Engine;
 use League\Plates\Extension\ExtensionInterface;
 use League\Plates\Template\Template;
@@ -25,6 +25,6 @@ class Translate implements ExtensionInterface
 
     public function translate(string $string, string $domain = 'default') : string
     {
-        return $this->translator->trans($string, [], $domain, Locale::getDefault());
+        return $this->translator->translate($string, $domain, Locale::getDefault());
     }
 }
