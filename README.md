@@ -13,13 +13,10 @@ Drop in your `.mo` and `.po` files. Open `config/bone-i18n.php` and tweak to sui
 ```php
 <?php
 
-use Laminas\I18n\Translator\Loader\Gettext;
-
 return [
     'i18n' => [
         'enabled' => true,
         'translations_dir' => 'data/translations',
-        'type' => Gettext::class,
         'default_locale' => 'en_PI',
         'supported_locales' => ['en_PI', 'en_GB', 'nl_BE', 'fr_BE'],
         'date_format' => 'd/m/Y',
